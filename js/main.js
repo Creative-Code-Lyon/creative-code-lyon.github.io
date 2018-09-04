@@ -1,6 +1,5 @@
 console.clear();
 
-const s = Splitting();
 ////////////////////////////////////////////////////
 const flatten = (arr, result = []) => {
     for (let i = 0, length = arr.length; i < length; i++) {
@@ -71,7 +70,7 @@ class Rect {
             h = this.h * (1.0 - p[p.length - 1]);
         }
         newRects.push(new Rect(x, y, w, h));
-        
+
         return newRects;
     }
 
