@@ -1,6 +1,3 @@
-console.clear();
-
-////////////////////////////////////////////////////
 const flatten = (arr, result = []) => {
     for (let i = 0, length = arr.length; i < length; i++) {
         const value = arr[i];
