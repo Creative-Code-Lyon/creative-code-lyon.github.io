@@ -2,7 +2,6 @@
 
 body {
   background: #000;
-  color: #fff;
   font-family: Raleway, sans-serif;
   overflow-x: hidden;
   padding: 1vw;
@@ -25,4 +24,5 @@ h1 {
   line-height: 170px;
   word-break: break-all;
   color: white;
+  z-index: 2;
 }
