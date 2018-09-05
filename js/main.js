@@ -107,12 +107,14 @@ function splitRects(n) {
 }
 
 let red = true;
+let angle = Math.PI / 7;
 const anim = () => {
     rects = [];
     rects.push(new Rect(-w, -h, 2 * w, 2 * h));
     splitRects((1 + Math.random() * 12) | 0);
 
     red = !red;
+    angle = Math.random() * Math.PI / 3.5 - Math.PI / 7;
     rects.forEach(rect => rect.anim());
 };
 anim();
@@ -125,7 +127,7 @@ setInterval(anim, 4000);
     ctx.fillRect(0, 0, w, h);
     ctx.save();
     ctx.translate(w / 2, h / 2);
-    ctx.rotate(Math.PI / 7);
+    ctx.rotate(angle);
     rects.forEach(rect => rect.display());
     ctx.restore();
 })();
