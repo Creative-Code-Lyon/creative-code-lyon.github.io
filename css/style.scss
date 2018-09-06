@@ -3,8 +3,9 @@
 body {
   background: #000;
   font-family: Raleway, sans-serif;
-  overflow-x: hidden;
-  padding: 1vw;
+  color: white;
+
+  // padding: 1vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,16 +18,31 @@ canvas {
   left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: -999;
 }
 
 h1 {
   font-size: 200px;
   line-height: 170px;
   word-break: break-all;
-  color: white;
-  z-index: 2;
 }
 
-#menu{
-    display: none;
+#social {
+    a{
+        text-decoration: none;
+        opacity: 0.4;
+        transition: opacity .5s ease-out;
+
+        &:hover{
+            opacity: 1;
+        }
+
+        $margin: 40px;
+        &:nth-of-type(2){
+            margin: 0px $margin/2 0 $margin;
+        }
+        &:nth-of-type(3){
+            margin: 0px $margin 0 $margin/2;
+        }
+    }
 }

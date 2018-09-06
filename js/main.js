@@ -10,9 +10,10 @@ const flatten = (arr, result = []) => {
     return result;
 };
 
-const canvas = document.querySelector("canvas");
-const ctx = canvas.getContext("2d");
-ctx.strokeStyle = "white";
+const canvas = document.createElement('canvas');
+document.body.prepend( canvas );
+const ctx = canvas.getContext('2d');
+ctx.strokeStyle = 'white';
 let w = window.innerWidth;
 let h = window.innerHeight;
 canvas.width = w;
@@ -72,8 +73,7 @@ class Rect {
     }
 
     display() {
-        ctx.fillStyle = red ? "red" : "black";
-        ctx.strokeStyle = red ? "red" : "black";
+        ctx.fillStyle = red ? 'red' : 'black';
 
         if (this.axis) {
             ctx.fillRect(this.x, this.y, ((this.w + 1) * this.s) / 100, this.h + 1);
@@ -123,7 +123,7 @@ setInterval(anim, 4000);
 (function display() {
     requestAnimationFrame(display);
 
-    ctx.fillStyle = red ? "black" : "red";
+    ctx.fillStyle = red ? 'black' : 'red';
     ctx.fillRect(0, 0, w, h);
     ctx.save();
     ctx.translate(w / 2, h / 2);
