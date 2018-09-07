@@ -7,6 +7,6 @@ Onepage for [Creative Code Lyon](https://creative-code-lyon.github.io), a friend
 Join us on:
 - facebook: https://www.facebook.com/creativecodelyon/
 - twitter: https://twitter.com/CreativeCode_LY
-- slack: https://creativecodelyon.slack.com/
+- slack: https://publicslack.com/slacks/creativecodelyon/invites/new
 - meetup: https://www.meetup.com/fr-FR/creative-code-lyon/
 - github: https://github.com/Creative-Code-Lyon/
