@@ -133,8 +133,8 @@ setInterval( anim, 4000 );
 ( function display() {
     requestAnimationFrame( display );
 
-    // ctx.fillStyle = red ? 'black' : 'red';
-    // ctx.fillRect( 0, 0, w, h );
+    ctx.fillStyle = red ? 'black' : 'red';
+    ctx.fillRect( 0, 0, w, h );
     ctx.save();
     ctx.translate( w / 2, h / 2 );
     ctx.rotate( angle );
