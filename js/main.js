@@ -1,73 +1,73 @@
-const flatten = (arr, result = []) => {
-    for (let i = 0, length = arr.length; i < length; i++) {
-        const value = arr[i];
-        if (Array.isArray(value)) {
-            flatten(value, result);
-        } else {
-            result.push(value);
-        }
-    }
-    return result;
-};
 
-const canvas = document.createElement('canvas');
+const canvas = document.createElement( 'canvas' );
 document.body.prepend( canvas );
-const ctx = canvas.getContext('2d');
-ctx.strokeStyle = 'white';
-let w = window.innerWidth;
-let h = window.innerHeight;
-canvas.width = w;
-canvas.height = h;
+const ctx = canvas.getContext( '2d' );
+
+let w, h;
+let rects = [];
+let red = true;
+let angle = Math.PI / 7;
+
+const setSize = () => {
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = w;
+    canvas.height = h;
+}
+setSize();
+addEventListener( 'resize', setSize );
 
 class Rect {
-    constructor(x, y, w, h) {
+    constructor( x, y, w, h ) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        this.s = 95;
+        this.s = 0;
     }
 
-    split(n, axis) {
-        if (n == 0) return this;
+    split( n, axis ) {
+        if( n == 0 ) return this;
 
-        let p = new Array(n)
-            .fill(0)
-            .map(d => Math.random())
+        let p = new Array( n )
+            .fill( 0 )
+            .map( d => Math.random() )
             .sort();
 
         let newRects = [];
 
-        for (let i = 0; i < n; i++) {
+        for( let i = 0; i < n; i++ ) {
             let x, y, w, h;
-            if (axis < 0.5) {
-                x = this.x + (i == 0 ? 0 : p[i - 1] * this.w);
+            if( axis < 0.5 ) {
+                x = this.x + ( i === 0 ? 0 : p[ i - 1 ] * this.w );
                 y = this.y;
-                w = this.w * (p[i] - (i == 0 ? 0 : p[i - 1]));
+                w = this.w * ( p[ i ] - ( i === 0 ? 0 : p[ i - 1 ] ) );
                 h = this.h;
-            } else {
+            }
+            else {
                 x = this.x;
-                y = this.y + (i == 0 ? 0 : p[i - 1] * this.h);
+                y = this.y + ( i === 0 ? 0 : p[ i - 1 ] * this.h );
                 w = this.w;
-                h = this.h * (p[i] - (i == 0 ? 0 : p[i - 1]));
+                h = this.h * ( p[ i ] - ( i === 0 ? 0 : p[ i - 1 ] ) );
             }
 
-            newRects.push(new Rect(x, y, w, h));
+            newRects.push( new Rect( x, y, w, h ) );
         }
 
         let x, y, w, h;
-        if (axis < 0.5) {
-            x = this.x + p[p.length - 1] * this.w;
+        if( axis < 0.5 ) {
+            x = this.x + p[ p.length - 1 ] * this.w;
             y = this.y;
-            w = this.w * (1.0 - p[p.length - 1]);
+            w = this.w * ( 1.0 - p[ p.length - 1 ] );
             h = this.h;
-        } else {
-            x = this.x;
-            y = this.y + p[p.length - 1] * this.h;
-            w = this.w;
-            h = this.h * (1.0 - p[p.length - 1]);
         }
-        newRects.push(new Rect(x, y, w, h));
+        else {
+            x = this.x;
+            y = this.y + p[ p.length - 1 ] * this.h;
+            w = this.w;
+            h = this.h * ( 1.0 - p[ p.length - 1 ] );
+        }
+        newRects.push( new Rect( x, y, w, h ) );
 
         return newRects;
     }
@@ -75,10 +75,11 @@ class Rect {
     display() {
         ctx.fillStyle = red ? 'red' : 'black';
 
-        if (this.axis) {
-            ctx.fillRect(this.x, this.y, ((this.w + 1) * this.s) / 100, this.h + 1);
-        } else {
-            ctx.fillRect(this.x, this.y, this.w + 1, ((this.h + 1) * this.s) / 100);
+        if( this.axis ) {
+            ctx.fillRect( this.x, this.y, ( ( this.w + 1 ) * this.s ) / 100, this.h + 1 );
+        }
+        else {
+            ctx.fillRect( this.x, this.y, this.w + 1, ( ( this.h + 1 ) * this.s ) / 100 );
         }
     }
 
@@ -86,9 +87,9 @@ class Rect {
         this.axis = Math.random() < 0.5;
         TweenMax.fromTo(
             this,
-            0.2 + Math.random(), {
-                s: 0
-            }, {
+            0.2 + Math.random(),
+            { s: 0 },
+            {
                 s: 100,
                 delay: Math.random(),
                 ease: Bounce.easeOut
@@ -97,37 +98,46 @@ class Rect {
     }
 }
 
-let rects = [];
+const flatten = ( arr, result = [] ) => {
+    for( let i = 0, length = arr.length; i < length; i ++ ) {
+        const value = arr[ i ];
+        if( Array.isArray( value ) ) {
+            flatten( value, result );
+        }
+        else {
+            result.push( value );
+        }
+    }
+    return result;
+};
 
-function splitRects(n) {
-    rects = rects.map(rect => rect.split((Math.random() * 4) | 0, Math.random()));
-    rects = flatten(rects);
+const splitRects = n => {
+    rects = rects.map( rect => rect.split( ( Math.random() * 4 ) | 0, Math.random() ) );
+    rects = flatten( rects );
 
-    if (--n) splitRects(n);
-}
+    if( --n ) splitRects( n );
+};
 
-let red = true;
-let angle = Math.PI / 7;
 const anim = () => {
     rects = [];
-    rects.push(new Rect(-w, -h, 2 * w, 2 * h));
-    splitRects((1 + Math.random() * 12) | 0);
+    rects.push( new Rect( -w, -h, 2 * w, 2 * h ) );
+    splitRects( ( 1 + Math.random() * 12) | 0 );
 
     red = !red;
     angle = Math.random() * Math.PI / 3.5 - Math.PI / 7;
-    rects.forEach(rect => rect.anim());
+    rects.forEach( rect => rect.anim() );
 };
 anim();
-setInterval(anim, 4000);
+setInterval( anim, 4000 );
 
-(function display() {
-    requestAnimationFrame(display);
+( function display() {
+    requestAnimationFrame( display );
 
-    ctx.fillStyle = red ? 'black' : 'red';
-    ctx.fillRect(0, 0, w, h);
+    // ctx.fillStyle = red ? 'black' : 'red';
+    // ctx.fillRect( 0, 0, w, h );
     ctx.save();
-    ctx.translate(w / 2, h / 2);
-    ctx.rotate(angle);
-    rects.forEach(rect => rect.display());
+    ctx.translate( w / 2, h / 2 );
+    ctx.rotate( angle );
+    rects.forEach( rect => rect.display() );
     ctx.restore();
-})();
+} )();

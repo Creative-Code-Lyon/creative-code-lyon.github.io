@@ -4,12 +4,6 @@ body {
   background: #000;
   font-family: Raleway, sans-serif;
   color: white;
-
-  // padding: 1vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 canvas {
@@ -22,8 +16,8 @@ canvas {
 }
 
 h1 {
-  font-size: 200px;
-  line-height: 170px;
+  font-size: 13vw;
+  line-height: 80%;
   word-break: break-all;
 }
 
