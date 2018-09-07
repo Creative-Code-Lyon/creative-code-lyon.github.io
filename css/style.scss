@@ -28,21 +28,32 @@ h1 {
 }
 
 #social {
-    a{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 25% 25% 25% 25%;
+
+    a {
         text-decoration: none;
-        opacity: 0.4;
+        opacity: 0.3;
         transition: opacity .5s ease-out;
+        display: block;
+        text-align: center;
 
         &:hover{
             opacity: 1;
         }
 
-        $margin: 40px;
+        &:nth-of-type(1){
+            grid-column-start: 1;
+        }
         &:nth-of-type(2){
-            margin: 0px $margin/2 0 $margin;
+            grid-column-start: 2;
         }
         &:nth-of-type(3){
-            margin: 0px $margin 0 $margin/2;
+            grid-column-start: 3;
+        }
+        &:nth-of-type(4){
+            grid-column-start: 4;
         }
     }
 }
