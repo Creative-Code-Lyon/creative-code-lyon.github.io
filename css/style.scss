@@ -23,8 +23,7 @@ h1 {
 
 #social {
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 25% 25% 25% 25%;
+    grid-template-columns: 20% 20% 20% 20% 20%;
 
     a {
         text-decoration: none;
@@ -48,6 +47,9 @@ h1 {
         }
         &:nth-of-type(4){
             grid-column-start: 4;
+        }
+        &:nth-of-type(5){
+            grid-column-start: 5;
         }
     }
 }
